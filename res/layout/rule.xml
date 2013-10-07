@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="游戏规则"/>
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:textSize="15sp"
+        android:text="    道路上布满了定时炸弹，你需要控制遥控车，在限定时间内到达道路的尽头，碰撞笑脸方块，使其表情改变，炸弹便会停止。注意，不要炸弹不能受到大的震动，否则。。。。。BOMB！！！"/>
+    </LinearLayout>
+    
+</ScrollView>
