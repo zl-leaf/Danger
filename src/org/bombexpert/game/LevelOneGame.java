@@ -15,21 +15,23 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 /**
- * 游戏第二关
+ * 游戏第一关
  * 
  * @author leaf
  * 
  */
-public class LevelTwoGame extends MainGameActivity {
+public class LevelOneGame extends MainGameActivity {
 
 	@Override
 	protected synchronized void onCreateGame() {
-		showReadyDialog();
+		showRule();
 		super.onCreateGame();
 	}
 
@@ -42,13 +44,11 @@ public class LevelTwoGame extends MainGameActivity {
 
 	@Override
 	protected void initBomb() {
+		// 第一关
 		addBomb(SCREEN_WIDTH / 2, BASE_LENGTH - BOMB_SIZE);
 		addBomb(SCREEN_WIDTH * 3 / 4, 2);
 		addBomb(SCREEN_WIDTH - BASE_LENGTH / 2, BASE_LENGTH / 2);
 		addBomb(SCREEN_WIDTH / 2, SCREEN_HEIGHT - BASE_LENGTH / 2);
-
-		addBomb(SCREEN_WIDTH - BASE_LENGTH, SCREEN_HEIGHT - BASE_LENGTH);
-		addBomb(SCREEN_WIDTH - BOMB_SIZE - 10, SCREEN_HEIGHT - BOMB_SIZE - 10);
 
 	}
 
@@ -195,16 +195,17 @@ public class LevelTwoGame extends MainGameActivity {
 				BASE_LENGTH + 2, SCREEN_HEIGHT - (BASE_LENGTH - BOMB_SIZE) / 2);
 	}
 
-
 	/**
-	 * 显示准备对话框
+	 * 显示游戏规则
 	 */
-	public void showReadyDialog() {
+	public void showRule() {
 		this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				new AlertDialog.Builder(LevelTwoGame.this)
-						.setTitle("准备好了吗？")
+				View view = LayoutInflater.from(LevelOneGame.this).inflate(
+						R.layout.rule, null);
+				new AlertDialog.Builder(LevelOneGame.this)
+						.setView(view)
 						.setPositiveButton("开始游戏",
 								new DialogInterface.OnClickListener() {
 									@Override
@@ -225,20 +226,21 @@ public class LevelTwoGame extends MainGameActivity {
 		});
 	}
 
+
 	@Override
 	protected void gameOver() {
 		super.gameOver();
 		this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				new AlertDialog.Builder(LevelTwoGame.this)
+				new AlertDialog.Builder(LevelOneGame.this)
 						.setTitle("这样都输！比三岁小孩子还菜！")
 						.setPositiveButton("重来",
 								new DialogInterface.OnClickListener() {
 									@Override
 									public void onClick(DialogInterface arg0,
 											int arg1) {
-										LevelTwoGame.this.restart();
+										LevelOneGame.this.restart();
 									}
 								})
 						.setNegativeButton("退出",
@@ -261,7 +263,7 @@ public class LevelTwoGame extends MainGameActivity {
 		this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				new AlertDialog.Builder(LevelTwoGame.this)
+				new AlertDialog.Builder(LevelOneGame.this)
 						.setTitle("成功过关")
 						.setPositiveButton("下一关",
 								new DialogInterface.OnClickListener() {
@@ -270,10 +272,10 @@ public class LevelTwoGame extends MainGameActivity {
 											int arg1) {
 										LevelManager.updateLevel();
 										Intent intent = new Intent(
-												LevelTwoGame.this,
-												LevelThreeGame.class);
-										LevelTwoGame.this.startActivity(intent);
-										LevelTwoGame.this.finish();
+												LevelOneGame.this,
+												LevelTwoGame.class);
+										LevelOneGame.this.startActivity(intent);
+										LevelOneGame.this.finish();
 									}
 								})
 						.setNegativeButton("退出",
@@ -292,7 +294,7 @@ public class LevelTwoGame extends MainGameActivity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			stopGame();
-			new AlertDialog.Builder(LevelTwoGame.this)
+			new AlertDialog.Builder(LevelOneGame.this)
 					.setTitle("真要退出?")
 					.setPositiveButton("退出",
 							new DialogInterface.OnClickListener() {
@@ -320,5 +322,5 @@ public class LevelTwoGame extends MainGameActivity {
 	public void restart() {
 		super.restart();
 	}
-
+	
 }

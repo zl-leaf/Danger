@@ -1,4 +1,4 @@
-package org.bombexpect.utils;
+package org.bombexpert.utils;
 
 public class LevelManager {
 	private static int level = 1;

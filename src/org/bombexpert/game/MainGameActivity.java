@@ -35,8 +35,8 @@ import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.math.MathUtils;
-import org.bombexpect.utils.LevelManager;
-import org.bombexpect.utils.Timer;
+import org.bombexpert.utils.LevelManager;
+import org.bombexpert.utils.Timer;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
