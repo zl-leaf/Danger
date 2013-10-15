@@ -69,7 +69,7 @@ public abstract class MainGameActivity extends SimpleBaseGameActivity {
 	private static final String BOMB = "BOMB";
 	private static final String SWEITCHER = "SWEITCHER";
 
-	private Camera mCamera;
+	protected Camera mCamera;
 
 	protected Font mTimeFont;
 
@@ -249,9 +249,11 @@ public abstract class MainGameActivity extends SimpleBaseGameActivity {
 				}
 			}
 		});
-
+		
 		return this.mScene;
 	}
+	
+	
 
 	/**
 	 * 初始化计时器
@@ -515,5 +517,5 @@ public abstract class MainGameActivity extends SimpleBaseGameActivity {
 	protected TiledSprite getCar() {
 		return this.mCar;
 	}
-
+	
 }

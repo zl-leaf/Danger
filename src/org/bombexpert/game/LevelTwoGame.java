@@ -13,28 +13,23 @@ import org.bombexpect.utils.LevelManager;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
 
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 /**
- * 游戏第一关
+ * 游戏第二关
  * 
  * @author leaf
  * 
  */
-public class LevelGame extends MainGameActivity {
+public class LevelTwoGame extends MainGameActivity {
 
 	@Override
 	protected synchronized void onCreateGame() {
-		if (LevelManager.getLevel() == 1) {
-			showRule();
-		} else {
-			showReadyDialog();
-		}
+		showReadyDialog();
 		super.onCreateGame();
 	}
 
@@ -47,26 +42,14 @@ public class LevelGame extends MainGameActivity {
 
 	@Override
 	protected void initBomb() {
-		// 第一关
 		addBomb(SCREEN_WIDTH / 2, BASE_LENGTH - BOMB_SIZE);
 		addBomb(SCREEN_WIDTH * 3 / 4, 2);
 		addBomb(SCREEN_WIDTH - BASE_LENGTH / 2, BASE_LENGTH / 2);
 		addBomb(SCREEN_WIDTH / 2, SCREEN_HEIGHT - BASE_LENGTH / 2);
 
-		if (LevelManager.getLevel() > 1) {
-			// 第二关
-			addBomb(SCREEN_WIDTH - BASE_LENGTH, SCREEN_HEIGHT - BASE_LENGTH);
-			addBomb(SCREEN_WIDTH - BOMB_SIZE - 10, SCREEN_HEIGHT - BOMB_SIZE
-					- 10);
-		}
+		addBomb(SCREEN_WIDTH - BASE_LENGTH, SCREEN_HEIGHT - BASE_LENGTH);
+		addBomb(SCREEN_WIDTH - BOMB_SIZE - 10, SCREEN_HEIGHT - BOMB_SIZE - 10);
 
-		if (LevelManager.getLevel() > 2) {
-			// 第三关
-			addBomb(SCREEN_WIDTH / 2 + BOMB_SIZE + 5, 2);
-			addBomb(SCREEN_WIDTH - BASE_LENGTH - 5, SCREEN_HEIGHT - BOMB_SIZE);
-			addBomb(SCREEN_WIDTH - BASE_LENGTH - 12 - BOMB_SIZE, SCREEN_HEIGHT
-					- BASE_LENGTH / 2);
-		}
 	}
 
 	@Override
@@ -120,12 +103,6 @@ public class LevelGame extends MainGameActivity {
 				racetrackCurveTextureRegion, getVertexBufferObjectManager());
 		lowerRightCurve.setRotation(270);
 		mScene.attachChild(lowerRightCurve);
-
-		// // 左下
-		// final Sprite lowerLeftCurve = new Sprite(0,
-		// SCREEN_HEIGHT - BASE_LENGTH, BASE_LENGTH, BASE_LENGTH,
-		// racetrackCurveTextureRegion, getVertexBufferObjectManager());
-		// mScene.attachChild(lowerLeftCurve);
 
 		// 左上
 		final Sprite upperLeftCurve = new Sprite(0, 0, BASE_LENGTH,
@@ -218,36 +195,6 @@ public class LevelGame extends MainGameActivity {
 				BASE_LENGTH + 2, SCREEN_HEIGHT - (BASE_LENGTH - BOMB_SIZE) / 2);
 	}
 
-	/**
-	 * 显示游戏规则
-	 */
-	public void showRule() {
-		this.runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				View view = LayoutInflater.from(LevelGame.this).inflate(
-						R.layout.rule, null);
-				new AlertDialog.Builder(LevelGame.this)
-						.setView(view)
-						.setPositiveButton("开始游戏",
-								new DialogInterface.OnClickListener() {
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-										startGame();
-									}
-								})
-						.setNegativeButton("退出",
-								new DialogInterface.OnClickListener() {
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-										System.exit(0);
-									}
-								}).show();
-			}
-		});
-	}
 
 	/**
 	 * 显示准备对话框
@@ -256,7 +203,7 @@ public class LevelGame extends MainGameActivity {
 		this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				new AlertDialog.Builder(LevelGame.this)
+				new AlertDialog.Builder(LevelTwoGame.this)
 						.setTitle("准备好了吗？")
 						.setPositiveButton("开始游戏",
 								new DialogInterface.OnClickListener() {
@@ -284,14 +231,14 @@ public class LevelGame extends MainGameActivity {
 		this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				new AlertDialog.Builder(LevelGame.this)
+				new AlertDialog.Builder(LevelTwoGame.this)
 						.setTitle("这样都输！比三岁小孩子还菜！")
 						.setPositiveButton("重来",
 								new DialogInterface.OnClickListener() {
 									@Override
 									public void onClick(DialogInterface arg0,
 											int arg1) {
-										LevelGame.this.restart();
+										LevelTwoGame.this.restart();
 									}
 								})
 						.setNegativeButton("退出",
@@ -314,40 +261,29 @@ public class LevelGame extends MainGameActivity {
 		this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				if (LevelManager.getLevel() < 3) {
-					new AlertDialog.Builder(LevelGame.this)
-							.setTitle("成功过关")
-							.setPositiveButton("下一关",
-									new DialogInterface.OnClickListener() {
-										@Override
-										public void onClick(
-												DialogInterface arg0, int arg1) {
-											LevelManager.updateLevel();
-											LevelGame.this.restart();
-										}
-									})
-							.setNegativeButton("退出",
-									new DialogInterface.OnClickListener() {
-										@Override
-										public void onClick(
-												DialogInterface dialog,
-												int which) {
-											System.exit(0);
-										}
-									}).show();
-				} else {
-					new AlertDialog.Builder(LevelGame.this)
-							.setTitle("恭喜你已经完成所有关卡")
-							.setNegativeButton("退出",
-									new DialogInterface.OnClickListener() {
-										@Override
-										public void onClick(
-												DialogInterface dialog,
-												int which) {
-											System.exit(0);
-										}
-									}).show();
-				}
+				new AlertDialog.Builder(LevelTwoGame.this)
+						.setTitle("成功过关")
+						.setPositiveButton("下一关",
+								new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface arg0,
+											int arg1) {
+										LevelManager.updateLevel();
+										Intent intent = new Intent(
+												LevelTwoGame.this,
+												LevelThreeGame.class);
+										LevelTwoGame.this.startActivity(intent);
+										LevelTwoGame.this.finish();
+									}
+								})
+						.setNegativeButton("退出",
+								new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										System.exit(0);
+									}
+								}).show();
 			}
 		});
 	}
@@ -356,7 +292,7 @@ public class LevelGame extends MainGameActivity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			stopGame();
-			new AlertDialog.Builder(LevelGame.this)
+			new AlertDialog.Builder(LevelTwoGame.this)
 					.setTitle("真要退出?")
 					.setPositiveButton("退出",
 							new DialogInterface.OnClickListener() {
@@ -384,4 +320,5 @@ public class LevelGame extends MainGameActivity {
 	public void restart() {
 		super.restart();
 	}
+
 }
