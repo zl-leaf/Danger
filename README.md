@@ -2,7 +2,6 @@
 
 ### 分支
 * master 稳定版
-* zl1017 最新版
 
 ### 使用到的库
 * AndEngine https://github.com/nicolasgramlich/AndEngine
