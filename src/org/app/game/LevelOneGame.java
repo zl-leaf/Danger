@@ -1,4 +1,4 @@
-package org.bombexpert.game;
+package org.app.game;
 
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.Scene;
@@ -8,7 +8,7 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.util.color.Color;
-import org.bombexpert.utils.LevelManager;
+import org.app.utils.LevelManager;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;

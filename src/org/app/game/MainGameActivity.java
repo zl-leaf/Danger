@@ -1,4 +1,4 @@
-package org.bombexpert.game;
+package org.app.game;
 
 import java.io.IOException;
 
@@ -35,8 +35,8 @@ import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.math.MathUtils;
-import org.bombexpert.utils.LevelManager;
-import org.bombexpert.utils.Timer;
+import org.app.utils.LevelManager;
+import org.app.utils.Timer;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;

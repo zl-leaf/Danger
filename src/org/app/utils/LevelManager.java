@@ -1,4 +1,4 @@
-package org.bombexpert.utils;
+package org.app.utils;
 
 public class LevelManager {
 	private static int level = 1;

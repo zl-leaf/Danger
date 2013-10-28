@@ -1,4 +1,4 @@
-package org.bombexpert.utils;
+package org.app.utils;
 
 public class Timer {
 	private long time;
